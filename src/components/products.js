@@ -4,16 +4,17 @@ import { v4 as uuid } from "uuid";
 import ProductCard from "./productCard";
 
 import "../styles/products.scss";
-const Products = ({ title, url,setCart }) => {
+
+const Products = ({ title, url}) => {
     const [products, setProducts] = useState([]);
     const fetchProducts = async () => {
         try {
             const res = await fetch(url);
             const data = await res.json();
             const tempData = data.map(e => {
-                console.log(e);
                 return {
                     ...e,
+                    id: uuid().split("-").join(""),
                     gallery: e.gallery.map(g => {
                         return {
                             ...g,
@@ -29,7 +30,7 @@ const Products = ({ title, url,setCart }) => {
 
                 }
             })
-            setProducts(data);
+            setProducts(tempData);
         } catch (error) {
             console.log(error);
         }
@@ -43,7 +44,7 @@ const Products = ({ title, url,setCart }) => {
             <p className="products-title">{title}</p>
             <div className="products-grid">
                 {products.map(e => {
-                    return <ProductCard setCart={setCart} product={e} key={uuid()} />
+                    return <ProductCard product={e} key={uuid()} />
                 })}
             </div>
         </div>

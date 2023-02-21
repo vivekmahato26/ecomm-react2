@@ -11,6 +11,9 @@ import "../styles/navbar.scss"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 
+
+import { Link } from 'react-router-dom';
+
 const theme = createTheme({
     palette: {
         primary: { main: grey[900] },
@@ -32,12 +35,16 @@ const Navbar = () => {
         <ThemeProvider theme={theme}>
             <div className="nav-container">
                 <div className="nav-left">
-                    <img src={logo} alt="Logo" className="nav-logo" />
+                    <Link to="/">
+                        <img src={logo} alt="Logo" className="nav-logo" />
+                    </Link>
                     <ul className="nav-list">
                         <li className="nav-item">Mens Wear</li>
                         <li className="nav-item">Womens Wear</li>
                         <li className="nav-item">Search</li>
-                        <li className="nav-item">Shops</li>
+                        <Link to="/shop" state={{x:1,y:2}}>
+                            <li className="nav-item">Shops</li>
+                        </Link>
                     </ul>
                 </div>
                 <div className="nav-right">
