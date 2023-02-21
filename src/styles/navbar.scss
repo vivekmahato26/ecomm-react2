@@ -1,0 +1,24 @@
+@import "./utils.scss";
+
+.nav-container {
+    @include padd(30px , 10px);
+    @include flexBox;
+    justify-content: space-between;
+    .nav-left {
+        @include flexBox;
+        .nav-list {
+            list-style: none;
+            @include flexBox;
+            .nav-item {
+                @include padd(1rem,0 );
+            }
+        }
+    }
+    .nav-right {
+        @include flexBox;
+        .nav-item {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+    }
+}

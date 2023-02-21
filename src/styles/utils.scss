@@ -1,0 +1,17 @@
+@mixin flexBox{
+    display: flex;
+    align-items: center;
+}
+$navPad : 0 1rem;
+
+@mixin padd($hor,$ver){
+    padding: $ver $hor;
+}
+
+
+@mixin textEllipse($maxWidth) {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: $maxWidth;
+}
