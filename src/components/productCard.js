@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "../styles/productCard.scss";
 import { addToCart, removeFromCart } from "../utils/cartManagement";
+import {GrFormAdd,GrFormSubtract} from "react-icons/gr"
 
 import cartContext from "../context/cartContext";
 
@@ -20,8 +21,8 @@ const ProductCard = ({ product }) => {
             <p className="productCard-sale-price">${product.sale_price}</p>
             {product.price && <p className="productCard-price">${product.price}</p>}
         </div>
-        <button onClick={() => setCart(addToCart(product,cart))}>Add To Cart</button>
-        <button onClick={() => setCart(removeFromCart(product,cart))}>remove To Cart</button>
+        <button onClick={() => setCart(addToCart(product,cart))}><GrFormSubtract/></button>
+        <button onClick={() => setCart(removeFromCart(product,cart))}><GrFormAdd/></button>
     </div>)
 }
 

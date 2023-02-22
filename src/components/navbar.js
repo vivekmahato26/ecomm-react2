@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -11,7 +11,7 @@ import "../styles/navbar.scss"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 
-
+import CartContext from '../context/cartContext';
 import { Link } from 'react-router-dom';
 
 const theme = createTheme({
@@ -21,13 +21,15 @@ const theme = createTheme({
 });
 
 const Navbar = () => {
+    const {cart} = useContext(CartContext);
+    console.log(cart);
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-        setAnchorEl(null);
+        setAnchorEl(null)
     };
 
     const logo = "https://chawkbazar.vercel.app/assets/images/logo.svg";
@@ -85,7 +87,7 @@ const Navbar = () => {
                     </div>
                     <BsSearch />
                     <p className='nav-item'>Sign In</p>
-                    <Badge badgeContent={4} color="primary">
+                    <Badge badgeContent={cart.totalQty} color="primary">
                         <FiShoppingBag />
                     </Badge>
                 </div>

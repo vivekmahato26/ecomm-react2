@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { BsChevronRight, BsChevronLeft } from "react-icons/bs"
 import "../styles/carousel.scss";
-
+import { v4 as uuid } from "uuid";
 const Carousel = () => {
     const [current, setCurrent] = useState(0)
     const widthSpan = 100.1
@@ -43,7 +43,7 @@ const Carousel = () => {
             <div className="carousel-body" id="carousel-body">
                 {data.map((e, index) => {
                     return (
-                        <div id={`carouselitem` + index} className="slide-container">
+                        <div key={uuid()} id={`carouselitem` + index} className="slide-container">
                             <img id="img" src={e} className="slide" />
                         </div>
                     )
@@ -54,7 +54,7 @@ const Carousel = () => {
             <div style={{display:"flex",justifyContent:"center"}}>
                 {data.map((e, index) => {
                     return (
-                        <div style={{fontSize:"5rem"}} onClick={() => { setCurrent(index); translateFullSlides(index) }}>
+                        <div key={uuid()} style={{fontSize:"5rem"}} onClick={() => { setCurrent(index); translateFullSlides(index) }}>
                             .
                         </div>
                     )
