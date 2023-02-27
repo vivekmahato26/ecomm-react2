@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../styles/productCard.scss";
 import { addToCart, removeFromCart } from "../utils/cartManagement";
 import {GrFormAdd,GrFormSubtract} from "react-icons/gr"
@@ -8,6 +8,14 @@ import cartContext from "../context/cartContext";
 const ProductCard = ({ product }) => {
 
     const {cart,setCart} = useContext(cartContext);
+    const [prodQty,setProdQty] = useState(0);
+
+    useEffect(()=>{
+        const cartProd = cart.items.filter(e => e.id === product.id);
+        if(cartProd.length) {
+            setProdQty(cartProd.qty);
+        }
+    },[cart])
 
 
     const baseUrl = "https://chawkbazar.vercel.app/_next/image?url=";
@@ -21,8 +29,9 @@ const ProductCard = ({ product }) => {
             <p className="productCard-sale-price">${product.sale_price}</p>
             {product.price && <p className="productCard-price">${product.price}</p>}
         </div>
-        <button onClick={() => setCart(addToCart(product,cart))}><GrFormSubtract/></button>
-        <button onClick={() => setCart(removeFromCart(product,cart))}><GrFormAdd/></button>
+        <button onClick={() => setCart(removeFromCart(product,cart))}><GrFormSubtract/></button>
+        <span className="product-qty">{prodQty}</span>
+        <button onClick={() => setCart(addToCart(product,cart))}><GrFormAdd/></button>
     </div>)
 }
 

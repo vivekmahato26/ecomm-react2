@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import ProductCard from "./productCard";
 
 import "../styles/products.scss";
+import { Link } from "react-router-dom";
 
 const Products = ({ title, url}) => {
     const [products, setProducts] = useState([]);
@@ -44,7 +45,9 @@ const Products = ({ title, url}) => {
             <p className="products-title">{title}</p>
             <div className="products-grid">
                 {products.map(e => {
-                    return <ProductCard product={e} key={uuid()} />
+                    return <Link to={"/product/"+e.id}>
+                        <ProductCard product={e} key={uuid()} />
+                    </Link>
                 })}
             </div>
         </div>
